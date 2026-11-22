@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albert Muntean | IT Project Manager</title>
+    <meta name="description" content="Albert Muntean — IT-менеджер проектов: внедрение Bitrix24 и ERP, заказная разработка, бизнес-анализ. Опыт финансового аудита (BDO, Казначейство РФ). Кишинёв, Молдова.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            background: #f8fafc;
+            font-family: 'Inter', sans-serif;
+            color: #0f172a;
+            line-height: 1.5;
+        }
+
+        /* Меню */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+            padding: 16px 32px;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1280px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-logo {
+            margin-right: auto;
+            font-weight: 800;
+            font-size: 1.3rem;
+            color: #0f172a;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #0f172a;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover { color: #2563eb; }
+
+        .nav-links a.contact-btn-nav,
+        .nav-links a.contact-btn-nav:hover {
+            background: #0f172a;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 40px;
+        }
+
+
+        .lang-switch { display: flex; border: 1px solid #e2e8f0; border-radius: 40px; overflow: hidden; }
+        .lang-switch button { font: inherit; font-weight: 600; font-size: 0.85rem; border: 0; background: transparent; color: #0f172a; padding: 6px 14px; cursor: pointer; transition: 0.2s; }
+        .lang-switch button:hover { background: #f1f5f9; }
+        .lang-switch button.active { background: #2563eb; color: #fff; }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Hero */
+        .hero {
+            padding: 140px 0 70px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 20px;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        .hero-tagline {
+            font-size: 1.25rem;
+            color: #475569;
+            max-width: 80%;
+            margin: 16px 0 8px;
+        }
+
+        .hero-tagline.secondary {
+            font-size: 1rem;
+        }
+
+        .method-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 24px 0;
+        }
+
+        .method-badge {
+            background: white;
+            border: 1px solid #e2e8f0;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-weight: 500;
+            color: #334155;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 32px;
+        }
+
+        .btn-primary {
+            background: #0f172a;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid #e2e8f0;
+            color: #0f172a;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-primary:hover, .btn-outline:hover {
+            transform: translateY(-2px);
+            transition: 0.2s;
+        }
+
+        /* Цифры */
+        .stats-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            background: white;
+            border-radius: 32px;
+            padding: 48px 40px;
+            margin: 40px 0;
+            border: 1px solid #e2e8f0;
+        }
+
+        .stat-card {
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 800;
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            color: #2563eb;
+            white-space: nowrap;
+        }
+
+        .stat-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin: 12px 0 6px;
+            color: #0f172a;
+        }
+
+        .stat-desc {
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .section-header {
+            margin: 64px 0 32px;
+        }
+
+        .section-header h2 {
+            font-size: 2rem;
+            font-weight: 700;
+        }
+
+        /* Кейсы */
+        .case-card {
+            display: flex;
+            flex-direction: column;
+            background: white;
+            border-radius: 28px;
+            border: 1px solid #e2e8f0;
+            margin-bottom: 32px;
+            overflow: hidden;
+            transition: 0.3s;
+        }
+
+        .case-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+
+        .case-header {
+            background: #f8fafc;
+            padding: 24px 32px;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .company-logo {
+            width: 64px;
+            height: 64px;
+            background: white;
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            border: 1px solid #e2e8f0;
+            flex-shrink: 0;
+        }
+
+        .company-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 6px;
+        }
+
+        .company-name {
+            font-size: 1.4rem;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .company-tag {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: #2563eb;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 30px;
+        }
+
+        .company-period {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        .case-body {
+            padding: 32px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+        }
+
+        .case-block {
+            flex: 1;
+            min-width: 250px;
+            border-left: 3px solid;
+            padding-left: 16px;
+        }
+
+        .case-block .title {
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .case-block p, .case-block li {
+            font-size: 0.95rem;
+            color: #1e293b;
+            margin-bottom: 6px;
+        }
+
+        .case-block ul {
+            margin-left: 18px;
+        }
+
+        .block-task { border-left-color: #f59e0b; }
+        .block-action { border-left-color: #2563eb; }
+        .block-result { border-left-color: #10b981; }
+
+        /* Фокус и ценность */
+        .approach-block {
+            margin: 64px 0;
+        }
+
+        .approach-block h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 32px;
+        }
+
+        .competence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+
+        .comp-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            border-radius: 24px;
+            padding: 32px;
+            transition: 0.2s;
+        }
+
+        .comp-card:hover {
+            border-color: #2563eb;
+        }
+
+        .comp-icon {
+            font-size: 2.5rem;
+            margin-bottom: 16px;
+        }
+
+        .comp-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #0f172a;
+        }
+
+        .comp-card p {
+            font-size: 0.95rem;
+            color: #475569;
+            line-height: 1.6;
+        }
+
+        /* Инструменты + образование */
+        .bottom-duo {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 48px 0;
+        }
+
+        .tools-panel, .edu-panel {
+            background: white;
+            border-radius: 32px;
+            padding: 32px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .tools-panel { flex: 2; min-width: 300px; }
+        .edu-panel { flex: 1.2; min-width: 300px; }
+
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 24px;
+        }
+
+        .tool-cat h4 {
+            font-weight: 700;
+            margin-bottom: 14px;
+            border-left: 3px solid #2563eb;
+            padding-left: 12px;
+        }
+
+        .tool-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .tool-tag {
+            background: #f1f5f9;
+            padding: 6px 14px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .edu-item {
+            margin-bottom: 24px;
+        }
+
+        .edu-title {
+            font-weight: 800;
+            font-size: 1rem;
+        }
+
+        .edu-detail {
+            font-size: 0.85rem;
+            color: #475569;
+            margin-top: 4px;
+        }
+
+        .lang-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        /* Footer */
+        .contact-footer {
+            background: #0f172a;
+            border-radius: 32px;
+            padding: 56px 32px;
+            text-align: center;
+            color: white;
+            margin-bottom: 48px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 32px 0;
+        }
+
+        .btn-light {
+            background: white;
+            color: #0f172a;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .btn-outline-light {
+            border: 1px solid rgba(255,255,255,0.4);
+            color: white;
+            background: transparent;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .small-footer {
+            text-align: center;
+            padding: 24px 0 48px;
+            font-size: 0.8rem;
+            color: #5b6e8c;
+        }
+
+        /* Анимации */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(28px);
+            animation: fadeUp 0.7s ease forwards;
+        }
+
+        @keyframes fadeUp {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+
+        /* Адаптив под телефоны */
+        @media (max-width: 768px) {
+            html { scroll-padding-top: 150px; }
+            .navbar { padding: 16px; }
+            .nav-container { flex-wrap: wrap; justify-content: center; gap: 16px; }
+            .nav-logo { margin-right: 0; }
+            .nav-links { gap: 18px; flex-wrap: wrap; justify-content: center; }
+            .hero { padding-top: 180px; }
+            .hero h1 { font-size: 2.2rem; }
+            .hero-tagline { max-width: 100%; }
+            .stats-grid { flex-direction: column; gap: 24px; padding: 32px 24px; }
+            .case-header { flex-direction: column; text-align: center; align-items: center; }
+            .company-info { align-items: center; }
+            .case-body { flex-direction: column; }
+            .bottom-duo { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="nav-container">
+        <a href="#hero" class="nav-logo">Albert Muntean</a>
+        <div class="nav-links">
+            <a href="#stats"><span data-en="Numbers">Цифры</span></a>
+            <a href="#projects"><span data-en="Experience">Опыт</span></a>
+            <a href="#approach"><span data-en="Focus">Фокус</span></a>
+            <a href="#tech"><span data-en="Stack">Стек</span></a>
+            <a href="#contact" class="contact-btn-nav"><span data-en="Contact">Связаться</span></a>
+            <div class="lang-switch" role="group" aria-label="Language"><button type="button" data-lang="ru">RU</button><button type="button" data-lang="en">EN</button></div>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <div id="hero" class="hero fade-up">
+        <h1>IT Project Manager</h1>
+        <div class="hero-tagline"><span data-en="I run Bitrix24 and ERP implementation projects from requirements gathering to client acceptance.">Веду проекты внедрения Bitrix24 и ERP-систем от сбора требований до приёмки клиентом.</span></div>
+        <div class="hero-tagline secondary"><span data-en="IT Project Manager with 3+ years of experience in ERP implementation and custom software development. Led a team of 4 developers (Scrum) and managed 5+ projects in parallel. Background in financial audit (2 years at BDO, 8 months at the Treasury of the Russian Federation) helps me translate complex business and accounting logic into clear technical specifications.">IT-менеджер проектов с опытом более 3 лет во внедрении ERP-систем и заказной разработке. Руководил командой из 4 разработчиков (Scrum) и вёл 5+ проектов параллельно. Опыт финансового аудита (2 года в BDO, 8 месяцев в Казначействе РФ) помогает переводить сложную бизнес- и бухгалтерскую логику в чёткие технические задания.</span></div>
+        <div class="method-badges">
+            <span class="method-badge">IT Project Management</span>
+            <span class="method-badge">Bitrix24</span>
+            <span class="method-badge">ERP Implementation</span>
+            <span class="method-badge">Business Analysis</span>
+            <span class="method-badge">Financial Audit</span>
+        </div>
+        <div class="btn-group">
+            <a href="https://t.me/al_mu_audit" target="_blank" rel="noopener" class="btn-primary"><span data-en="📩 Message me">📩 Написать мне</span></a>
+            <a href="#projects" class="btn-outline"><span data-en="📋 View my experience →">📋 Посмотреть мой опыт →</span></a>
+        </div>
+    </div>
+
+    <div id="stats" class="stats-grid fade-up delay-100">
+        <div class="stat-card">
+            <div class="stat-number"><span data-en="3+ years">3+ года</span></div>
+            <div class="stat-title"><span data-en="in IT projects">в IT-проектах</span></div>
+            <div class="stat-desc"><span data-en="ERP implementation and custom software development">внедрение ERP-систем и заказная разработка</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">15+</div>
+            <div class="stat-title"><span data-en="Bitrix24 and custom development projects">проектов на Bitrix24 и заказной разработке</span></div>
+            <div class="stat-desc"><span data-en="full lifecycle: from requirements to client sign-off">полный цикл: от требований до приёмки клиентом</span></div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">3</div>
+            <div class="stat-title"><span data-en="ERP implementations (UNA.md)">внедрения ERP (UNA.md)</span></div>
+            <div class="stat-desc">Pegas, Bemol, Denovie Group</div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-number">−20%</div>
+            <div class="stat-title"><span data-en="unbilled and unverified tasks">неоплаченных и непроверенных задач</span></div>
+            <div class="stat-desc"><span data-en="via a strict post-meeting control system">благодаря системе контроля по итогам встреч</span></div>
+        </div>
+    </div>
+
+    <div class="section-header" id="projects"><h2><span data-en="Work experience">Опыт работы</span></h2></div>
+
+    <div class="case-card fade-up">
+        <div class="case-header">
+            <div class="company-logo">🚀</div>
+            <div class="company-info">
+                <div class="company-name">Richcode SRL</div>
+                <span class="company-tag"><span data-en="IT Project Manager · Bitrix24 and custom development">IT-менеджер проектов · Bitrix24 и заказная разработка</span></span>
+                <span class="company-period"><span data-en="Feb 2025 – Aug 2026 · Chisinau, Moldova">02.2025 – 08.2026 · Кишинёв, Молдова</span></span>
+            </div>
+        </div>
+        <div class="case-body">
+            <div class="case-block block-task">
+                <div class="title"><span data-en="📌 TASKS">📌 ЗАДАЧИ</span></div>
+                <ul>
+                    <li><span data-en="End-to-end delivery of Bitrix24 implementations and custom solutions built on the platform: from requirements gathering to final client sign-off.">Сквозное ведение проектов внедрения Bitrix24 и заказных решений на платформе: от сбора требований до итоговой приёмки клиентом.</span></li>
+                    <li><span data-en="Led a team of 4 developers (Scrum), managing 5+ projects in parallel.">Руководство командой из 4 разработчиков (Scrum), 5+ проектов параллельно.</span></li>
+                    <li><span data-en="Single point of contact for C-suite executives, business units and technical teams.">Единая точка контакта для топ-менеджмента, бизнес-подразделений и технических команд.</span></li>
+                </ul>
+            </div>
+            <div class="case-block block-action">
+                <div class="title"><span data-en="⚙️ WHAT I DID">⚙️ ЧТО СДЕЛАНО</span></div>
+                <ul>
+                    <li><span data-en="Initiated a task classification and risk-authorization system: tasks under 4 hours approved independently.">Инициировал систему классификации задач и авторизации рисков: самостоятельное согласование задач до 4 часов.</span></li>
+                    <li><span data-en="Introduced a strict post-meeting control system.">Ввёл строгую систему контроля по итогам встреч.</span></li>
+                    <li><span data-en="Autonomously resolved client issues and streamlined decision-making.">Самостоятельно решал вопросы клиентов и ускорял принятие решений.</span></li>
+                </ul>
+            </div>
+            <div class="case-block block-result">
+                <div class="title"><span data-en="🏆 RESULTS">🏆 РЕЗУЛЬТАТ</span></div>
+                <p><strong><span data-en="15+ full-lifecycle projects">15+ проектов полного цикла</span></strong> <span data-en="(average duration 3+ months).">(средняя длительность 3+ месяца).</span></p>
+                <p><span data-en="Unbilled and unverified tasks reduced by 20%, recovering dozens of hours per month for billing. Deadline adherence supported retention of key clients (2+ years).">Объём неоплаченных и непроверенных задач сократился на 20%, вернулись десятки часов в месяц для выставления счетов. Соблюдение сроков поддержало удержание ключевых клиентов (2+ года).</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-card fade-up delay-100">
+        <div class="case-header">
+            <div class="company-logo">🧾</div>
+            <div class="company-info">
+                <div class="company-name">Koninfo SRL</div>
+                <span class="company-tag"><span data-en="ERP Project &amp; Business Analyst · UNA.md implementation">ERP-проектный и бизнес-аналитик · Внедрение UNA.md</span></span>
+                <span class="company-period"><span data-en="Jul 2023 – Dec 2024 · Chisinau, Moldova">07.2023 – 12.2024 · Кишинёв, Молдова</span></span>
+            </div>
+        </div>
+        <div class="case-body">
+            <div class="case-block block-task">
+                <div class="title"><span data-en="📌 TASKS">📌 ЗАДАЧИ</span></div>
+                <ul>
+                    <li><span data-en="Full-cycle ERP (UNA.md) automation in 3 companies: financial and accounting, warehouse management.">Внедрение ERP-автоматизации (UNA.md) полного цикла в 3 компаниях: финансовый и бухгалтерский учёт, управление складом.</span></li>
+                    <li><span data-en="Requirements gathering and technical specifications based on input from CFOs and Chief Accountants.">Сбор требований и подготовка технических заданий на основе информации от финансовых директоров и главных бухгалтеров.</span></li>
+                </ul>
+            </div>
+            <div class="case-block block-action">
+                <div class="title"><span data-en="⚙️ WHAT I DID">⚙️ ЧТО СДЕЛАНО</span></div>
+                <ul>
+                    <li><span data-en="Prepared comprehensive technical documentation.">Подготовил полную техническую документацию.</span></li>
+                    <li><span data-en="Conducted pre-project gap analysis, estimated labor hours and risks, negotiated scope, budgets and deadlines with C-suite executives.">Провёл предпроектный gap-анализ, оценил трудозатраты и риски, согласовал объём работ, бюджеты и сроки с топ-менеджментом.</span></li>
+                    <li><span data-en="Translated accounting workflows and business logic into technical tasks for the Scrum development team.">Переводил бухгалтерские процессы и бизнес-логику в технические задачи для Scrum-команды разработки.</span></li>
+                    <li><span data-en="Designed and implemented a rigorous time-tracking and control system across project workflows.">Разработал и внедрил строгую систему учёта времени и контроля в проектных процессах.</span></li>
+                </ul>
+            </div>
+            <div class="case-block block-result">
+                <div class="title"><span data-en="🏆 RESULTS">🏆 РЕЗУЛЬТАТ</span></div>
+                <p><strong><span data-en="3 ERP implementations: Pegas, Bemol, Denovie Group.">3 внедрения ERP: Pegas, Bemol, Denovie Group.</span></strong> <span data-en="Project budgets from $3K to $15K. Actual vs. estimate deviation for labor hours and risks within 15%.">Бюджеты проектов — от $3K до $15K. Отклонение фактических показателей от оценки трудозатрат и рисков — в пределах 15%.</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-card fade-up delay-200">
+        <div class="case-header">
+            <div class="company-logo">🏛️</div>
+            <div class="company-info">
+                <div class="company-name"><span data-en="Treasury of the Russian Federation">Казначейство Российской Федерации</span></div>
+                <span class="company-tag"><span data-en="Treasurer · Consolidated budget reporting management department">Казначей · Отдел управления консолидированной бюджетной отчётностью</span></span>
+                <span class="company-period"><span data-en="Sep 2022 – May 2023 · Moscow, Russia">09.2022 – 05.2023 · Москва, Россия</span></span>
+            </div>
+        </div>
+        <div class="case-body">
+            <div class="case-block block-task">
+                <div class="title"><span data-en="📌 TASKS">📌 ЗАДАЧИ</span></div>
+                <ul>
+                    <li><span data-en="Auditing annual reports of budgetary institutions.">Проверка годовых отчётов бюджетных учреждений.</span></li>
+                    <li><span data-en="Scheduled audits of state-owned companies with preparation of audit reports.">Плановые проверки государственных компаний с подготовкой аудиторских отчётов.</span></li>
+                </ul>
+            </div>
+            <div class="case-block block-action">
+                <div class="title"><span data-en="⚙️ WHAT I DID">⚙️ ЧТО СДЕЛАНО</span></div>
+                <ul>
+                    <li><span data-en="Identified discrepancies by reconciling Electronic Budget system reports with 1C accounting data.">Выявлял расхождения путём сверки данных отчётов системы «Электронный бюджет» с данными бухгалтерского учёта в 1С.</span></li>
+                    <li><span data-en="Analyzed deviations and checked explanatory notes in cases of budget overruns: checked accounts, requested supporting documents, submitted corrected reports.">Анализировал отклонения и проверял пояснительные записки при превышении бюджета: проверял счета, запрашивал подтверждающие документы, направлял исправленные отчёты.</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="case-card fade-up">
+        <div class="case-header">
+            <div class="company-logo">📊</div>
+            <div class="company-info">
+                <div class="company-name">BDO Unicon</div>
+                <span class="company-tag"><span data-en="Audit Specialist · Industrial and Financial Groups Department">Специалист по аудиту · Отдел промышленных и финансовых групп</span></span>
+                <span class="company-period"><span data-en="Jun 2020 – Sep 2022 · Moscow, Russia">06.2020 – 09.2022 · Москва, Россия</span></span>
+            </div>
+        </div>
+        <div class="case-body">
+            <div class="case-block block-task">
+                <div class="title"><span data-en="📌 TASKS">📌 ЗАДАЧИ</span></div>
+                <ul>
+                    <li><span data-en="Audit projects for RAS/IFRS financial statements of industrial and financial companies; main client — Gazprom Group.">Проекты по аудиту финансовой отчётности по РСБУ/МСФО промышленных и финансовых компаний; основной клиент — Группа «Газпром».</span></li>
+                    <li><span data-en="Work at customer sites: direct access to ERP systems (SAP), data export and analytical processing of very large data sets.">Работа на площадках заказчиков: прямой доступ к ERP-системам (SAP), выгрузка и аналитическая обработка очень больших массивов данных.</span></li>
+                </ul>
+            </div>
+            <div class="case-block block-action">
+                <div class="title"><span data-en="⚙️ WHAT I DID">⚙️ ЧТО СДЕЛАНО</span></div>
+                <ul>
+                    <li><span data-en="Substantive audit procedures and control tests: verification of primary documentation, confirmation of obligations, compliance checks.">Аудиторские процедуры по существу и тесты средств контроля: проверка первичной документации, подтверждение обязательств, проверка соблюдения нормативных требований.</span></li>
+                    <li><span data-en="Searching for anomalies and indicators of fraud (atypical transaction times, amounts, correspondence), preparing justifications for modified opinions.">Поиск аномалий и признаков мошенничества (анализ нетипичного времени и сумм операций, переписки), подготовка обоснований модифицированных заключений.</span></li>
+                    <li><span data-en="Financial and economic models, budgeting methodologies and reporting automation within financial control functions.">Финансово-экономические модели, методологии бюджетирования и автоматизация отчётности в рамках функций финансового контроля.</span></li>
+                    <li><span data-en="Accounting methodologies and a list of control procedures, automation of management data collection.">Методологии учёта и перечень контрольных процедур, автоматизация сбора управленческих данных.</span></li>
+                </ul>
+            </div>
+            <div class="case-block block-result">
+                <div class="title"><span data-en="🏆 RESULTS">🏆 РЕЗУЛЬТАТ</span></div>
+                <p><strong><span data-en="A cycle of audit procedures for PJSC Gazprom">Цикл аудиторских процедур для ПАО «Газпром»</span></strong> <span data-en="— over 2 years, 12+ hours during peak periods.">— более 2 лет, в пиковые периоды по 12+ часов.</span></p>
+                <p><span data-en="Hands-on experience with SAP and Oracle Financials ERP systems: data export and transaction log analysis.">Практический опыт работы с ERP-системами SAP и Oracle Financials: выгрузка данных и анализ журналов транзакций.</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="approach" class="approach-block fade-up">
+        <h2><span data-en="🎯 Skills and key focus">🎯 Навыки и ключевой фокус</span></h2>
+        <div class="competence-grid">
+            <div class="comp-card">
+                <div class="comp-icon">🌉</div>
+                <h4><span data-en="Bridging business and IT">Связь между бизнесом и IT</span></h4>
+                <p><span data-en="I translate complex business and accounting logic into clear technical specifications. I gather requirements from CFOs and Chief Accountants and set tasks for the Scrum development team.">Перевожу сложную бизнес- и бухгалтерскую логику в чёткие технические задания. Собираю требования у финансовых директоров и главных бухгалтеров и ставлю задачи Scrum-команде разработки.</span></p>
+            </div>
+            <div class="comp-card">
+                <div class="comp-icon">👥</div>
+                <h4><span data-en="Project and team management">Управление проектами и командой</span></h4>
+                <p><span data-en="Led a team of 4 developers, managed 5+ projects in parallel. I estimate labor hours and risks and negotiate scope, budgets and deadlines with C-suite executives.">Руководил командой из 4 разработчиков, вёл 5+ проектов параллельно. Оцениваю трудозатраты и риски, согласовываю объём работ, бюджеты и сроки с топ-менеджментом.</span></p>
+            </div>
+            <div class="comp-card">
+                <div class="comp-icon">📊</div>
+                <h4><span data-en="Control and financial discipline">Контроль и финансовая дисциплина</span></h4>
+                <p><span data-en="I build time-tracking and post-meeting task control systems: fewer unbilled and unverified tasks, more deadlines met. My financial audit background helps me work with numbers and anomalies.">Выстраиваю системы учёта времени и контроля задач по итогам встреч: меньше неоплаченных и непроверенных работ, больше соблюдённых сроков. Бэкграунд в финансовом аудите помогает работать с цифрами и аномалиями.</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="tech" class="bottom-duo">
+        <div class="tools-panel fade-up">
+            <h3 style="font-size: 1.6rem; font-weight: 700; margin-bottom: 28px;"><span data-en="🛠️ Tools &amp; stack">🛠️ Инструменты & стек</span></h3>
+            <div class="tools-grid">
+                <div class="tool-cat"><h4><span data-en="Management &amp; trackers">Менеджмент и трекеры</span></h4><div class="tool-tags"><span class="tool-tag">Jira</span><span class="tool-tag">Confluence</span><span class="tool-tag">Trello</span><span class="tool-tag">Bitrix24</span></div></div>
+                <div class="tool-cat"><h4><span data-en="ERP systems">ERP-системы</span></h4><div class="tool-tags"><span class="tool-tag">UNA.md</span><span class="tool-tag">SAP</span><span class="tool-tag">Oracle Financials</span><span class="tool-tag"><span data-en="1C">1С</span></span></div></div>
+                <div class="tool-cat"><h4><span data-en="Methods &amp; practices">Методологии и практики</span></h4><div class="tool-tags"><span class="tool-tag">Scrum</span><span class="tool-tag"><span data-en="Gap analysis">Gap-анализ</span></span><span class="tool-tag"><span data-en="Technical specifications">Технические задания</span></span><span class="tool-tag"><span data-en="Labor &amp; risk estimation">Оценка трудозатрат и рисков</span></span></div></div>
+            </div>
+        </div>
+        <div class="edu-panel fade-up delay-100">
+            <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 28px;"><span data-en="🎓 Education &amp; languages">🎓 Образование и языки</span></h3>
+            <div class="edu-item"><div class="edu-title"><span data-en="Financial University under the Government of the Russian Federation, Moscow">Финансовый университет при Правительстве РФ, Москва</span></div><div class="edu-detail"><span data-en="Bachelor&#x27;s degree · Tax, Audit and Business Analysis · 2019–2023">Бакалавр · «Налоги, аудит и бизнес-анализ» · 2019–2023</span></div></div>
+            <div class="lang-row"><span><strong><span data-en="Russian">Русский</span></strong> <span data-en="— mother tongue">— родной</span></span><span><strong>English</strong> — B2</span></div>
+        </div>
+    </div>
+
+    <div id="contact" class="contact-footer fade-up">
+        <h3 style="font-size: 1.8rem; margin-bottom: 16px;"><span data-en="📬 Open to new offers and projects">📬 Открыт для новых предложений и проектов</span></h3>
+        <p style="opacity: 0.9;"><span data-en="Considering roles in IT project management, ERP implementation and business analysis.">Рассматриваю роли в управлении IT-проектами, внедрении ERP и бизнес-анализе.</span></p>
+        <div class="contact-buttons">
+            <a href="https://t.me/al_mu_audit" target="_blank" rel="noopener" class="btn-light"><span data-en="📩 Message on Telegram">📩 Написать в Telegram</span></a>
+            <a id="cv-link" href="Albert_Muntean_CV_RU.pdf" download="Albert_Muntean_CV_RU.pdf" class="btn-outline-light"><span data-en="📄 Download CV (PDF)">📄 Скачать резюме (PDF)</span></a>
+        </div>
+        <p style="font-size: 0.85rem;">📧 <a href="mailto:al.mu.audit@gmail.com" style="color: inherit;">al.mu.audit@gmail.com</a> | 📞 <a href="tel:+37379263309" style="color: inherit; text-decoration: none;">+373 79263309</a> <span data-en="| Chisinau, Moldova">| Кишинёв, Молдова</span></p>
+    </div>
+
+    <div class="small-footer">
+        Albert Muntean — IT Project Management · ERP & Business Analysis · Audit
+    </div>
+</div>
+
+
+<script>
+(function () {
+    var I18N = {
+        ru: { title: 'Albert Muntean | IT Project Manager', desc: 'Albert Muntean — IT-менеджер проектов: внедрение Bitrix24 и ERP, заказная разработка, бизнес-анализ. Опыт финансового аудита (BDO, Казначейство РФ). Кишинёв, Молдова.', cv: 'Albert_Muntean_CV_RU.pdf' },
+        en: { title: 'Albert Muntean | IT Project Manager', desc: 'Albert Muntean — IT Project Manager: Bitrix24 and ERP implementation, custom software development, business analysis. Financial audit background (BDO, Treasury of the Russian Federation). Chisinau, Moldova.', cv: 'Albert_Muntean_CV.pdf' }
+    };
+    var nodes = document.querySelectorAll('[data-en]');
+    nodes.forEach(function (el) { el.setAttribute('data-ru', el.textContent); });
+
+    function setLang(lang, save) {
+        if (!I18N[lang]) lang = 'ru';
+        nodes.forEach(function (el) { el.textContent = el.getAttribute(lang === 'en' ? 'data-en' : 'data-ru'); });
+        document.documentElement.lang = lang;
+        document.title = I18N[lang].title;
+        var meta = document.querySelector('meta[name="description"]');
+        if (meta) meta.setAttribute('content', I18N[lang].desc);
+        var cv = document.getElementById('cv-link');
+        cv.setAttribute('href', I18N[lang].cv);
+        cv.setAttribute('download', I18N[lang].cv);
+        document.querySelectorAll('.lang-switch button').forEach(function (b) {
+            var on = b.getAttribute('data-lang') === lang;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        if (save) { try { localStorage.setItem('lang', lang); } catch (e) {} }
+    }
+
+    document.querySelectorAll('.lang-switch button').forEach(function (b) {
+        b.addEventListener('click', function () { setLang(b.getAttribute('data-lang'), true); });
+    });
+
+    var lang = 'ru';
+    var q = /[?&]lang=(ru|en)/.exec(location.search);
+    if (q) lang = q[1];
+    else { try { lang = localStorage.getItem('lang') || 'ru'; } catch (e) {} }
+    setLang(lang, false);
+})();
+</script>
+
+</body>
+</html>
